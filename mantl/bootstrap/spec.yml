@@ -1,0 +1,29 @@
+---
+name: mantl-bootstrap
+version: 0.1.0
+license: Apache 2.0
+iteration: 1
+vendor: Asteris, LLC
+url: https://mantl.io
+architecture: x86_64
+description: Bootstrap a Mantl cluster
+type: rpm
+
+depends:
+  - systemd
+
+resources:
+  - url: https://bintray.com/artifact/download/chrisaubuchon/generic/mantl-bootstrap_{{.Version}}_linux_amd64.tar.gz
+    hash-type: sha256
+    hash: e6c161915e394e1873d9ee3f916ee6886b48662daa7cba1afe81b6e9a840e12b
+
+targets:
+  - src: "{{.BuildRoot}}/mantl-bootstrap_{{.Version}}_linux_amd64/mantl-bootstrap"
+    dest: /usr/bin/
+
+scripts:
+  build: |
+   tar -xzvf mantl-bootstrap_{{.Version}}_linux_amd64.tar.gz 
+
+extra-args: |
+  --rpm-os linux
