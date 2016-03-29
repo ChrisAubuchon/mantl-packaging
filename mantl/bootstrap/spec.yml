@@ -1,29 +1,33 @@
 ---
 name: mantl-bootstrap
 version: 0.1.0
-license: Apache 2.0
-iteration: 1
+license: MPLv2.0
+iteration: 27
 vendor: Asteris, LLC
 url: https://mantl.io
 architecture: x86_64
-description: Bootstrap a Mantl cluster
+description: Bootstrap package for mantl
 type: rpm
 
 depends:
   - systemd
 
 resources:
-  - url: https://bintray.com/artifact/download/chrisaubuchon/generic/mantl-bootstrap_{{.Version}}_linux_amd64.tar.gz
-    hash-type: sha256
-    hash: e6c161915e394e1873d9ee3f916ee6886b48662daa7cba1afe81b6e9a840e12b
+#  - url: https://bintray.com/artifact/download/chrisaubuchon/generic/mantl-bootstrap_0.1.0_linux_amd64.zip
+#    hash-type: sha256
+#    hash: c5d0df5723179b01f84ab58e227afd22a3908d549e9dab440447972ff7bb8901
 
 targets:
-  - src: "{{.BuildRoot}}/mantl-bootstrap_{{.Version}}_linux_amd64/mantl-bootstrap"
+#  - src: "{{.BuildRoot}}/mantl-bootstrap"
+  - src: "{{.SpecRoot}}/mantl-bootstrap"
     dest: /usr/bin/
 
-scripts:
-  build: |
-   tar -xzvf mantl-bootstrap_{{.Version}}_linux_amd64.tar.gz 
+#scripts:
+#  build: |
+#    unzip mantl-bootstrap_{{.Version}}_linux_amd64.zip
 
 extra-args: |
   --rpm-os linux
+  --rpm-auto-add-directories
+  --rpm-auto-add-exclude-directories /etc/systemd
+  --rpm-auto-add-exclude-directories /etc/systemd/system
