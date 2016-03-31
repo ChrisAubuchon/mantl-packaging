@@ -2,7 +2,7 @@
 name: mantl-bootstrap
 version: 0.1.0
 license: MPLv2.0
-iteration: 27
+iteration: 29
 vendor: Asteris, LLC
 url: https://mantl.io
 architecture: x86_64
