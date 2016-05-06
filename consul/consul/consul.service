@@ -11,8 +11,6 @@ User=consul
 Group=consul
 EnvironmentFile=/etc/sysconfig/consul
 ExecStart=/usr/bin/consul agent -config-dir=${CONFIG_DIR} -data-dir=${DATA_DIR} $EXTRA_OPTS
-ExecStartPost=/usr/bin/smlr http http://127.0.0.1:8500/v1/catalog/nodes
-ExecStartPost=/usr/bin/mantl-bootstrap agent-acl
 ExecReload=-/bin/kill -HUP $MAINPID
 KillSignal=SIGINT
 LimitNOFILE=65536
