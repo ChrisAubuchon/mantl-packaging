@@ -2,7 +2,7 @@
 name: vault-mantl
 version: 0.1.0
 license: Apache-2.0
-iteration: 1
+iteration: 21
 vendor: Asteris, LLC.
 architecture: x86_64
 description: Mantl Vault
@@ -15,16 +15,22 @@ depends:
 
 targets:
   - src: "{{.SpecRoot}}/vault-unseal.sh"
-    dest: /usr/local/bin
+    dest: /usr/local/bin/
   - src: "{{.SpecRoot}}/vault-bootstrap.sh"
-    dest: /usr/local/bin
+    dest: /usr/local/bin/
   - src: "{{.SpecRoot}}/vault-health-check.sh"
-    dest: /usr/local/bin
+    dest: /usr/local/bin/
   - src: "{{.SpecRoot}}/vault-register-with-consul.sh"
-    dest: /usr/local/bin
+    dest: /usr/local/bin/
+  - src: "{{.SpecRoot}}/vault-configure.sh"
+    dest: /usr/local/bin/
+  - src: "{{.SpecRoot}}/10-bootstrap.conf"
+    dest: /etc/systemd/system/vault.service.d/
 
 extra-args: |
   --rpm-os linux
   --rpm-auto-add-directories
   --rpm-auto-add-exclude-directories /etc/systemd
   --rpm-auto-add-exclude-directories /etc/systemd/system
+  --rpm-auto-add-exclude-directories /usr/local/bin
+
