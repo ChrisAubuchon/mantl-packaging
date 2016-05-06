@@ -1,0 +1,28 @@
+---
+name: consul-mantl
+version: 0.1.0
+license: Apache-2.0
+iteration: 9
+vendor: Asteris, LLC.
+architecture: x86_64
+description: Mantl Consul
+type: rpm
+
+depends:
+  - consul
+  - consul-cli
+  - smlr
+
+targets:
+  - src: "{{.SpecRoot}}/consul-acl-bootstrap.sh"
+    dest: /usr/local/bin/
+  - src: "{{.SpecRoot}}/10-bootstrap.conf"
+    dest: /etc/systemd/system/consul.service.d/
+
+extra-args: |
+  --rpm-os linux
+  --rpm-auto-add-directories
+  --rpm-auto-add-exclude-directories /etc/systemd
+  --rpm-auto-add-exclude-directories /etc/systemd/system
+  --rpm-auto-add-exclude-directories /usr/local/bin
+
